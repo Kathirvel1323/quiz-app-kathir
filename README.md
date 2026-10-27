@@ -12,3 +12,7 @@ Open [DartPad](https://dartpad.dev/), choose Flutter, paste `lib/main.dart`, and
 - Confirm the score matches the correct answers and the results screen appears at the end.
 - Restart should return to question one with a cleared score and answer selection.
 - Run `flutter test`; GitHub Actions analyzes, tests, builds, and publishes the web preview.
+
+## Extended features
+
+See [docs/FEATURES.md](docs/FEATURES.md) for the enhancement list, source layout, and a quick demo checklist.

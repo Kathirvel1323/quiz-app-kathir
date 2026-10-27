@@ -46,6 +46,18 @@ class _QuizScreenState extends State<QuizScreen> {
   int _score = 0;
   int? _selected;
   bool get _finished => _index >= questions.length;
+  String get _explanation => [
+    'Column places its children from top to bottom; Row places them side by side.',
+    'Flutter apps are written in Dart, the language maintained for Flutter development.',
+    'FilledButton is a Material button designed for a prominent filled action.',
+    'setState tells Flutter that this State changed and its UI should be rebuilt.',
+    'ListView.builder creates list items on demand, which is useful for longer lists.',
+    'A Key helps Flutter identify a widget when items move or change in a list.',
+    'MaterialApp sets up the app-level Material design structure and navigation.',
+    'Padding adds space around its child without changing the child itself.',
+    'Scaffold provides common page structure such as an app bar and body.',
+    'Navigator.push adds a route to the navigation stack to show a new screen.',
+  ][_index];
 
   void _answer(int option) {
     if (_selected != null) return;
@@ -102,6 +114,8 @@ class _QuizScreenState extends State<QuizScreen> {
       if (_selected != null) ...[
         const SizedBox(height: 8),
         Text(correct ? 'Correct! Great job.' : 'Not quite. The correct answer is ${question.options[question.answerIndex]}.', style: TextStyle(fontWeight: FontWeight.w600, color: correct ? Colors.green : Colors.red)),
+        const SizedBox(height: 8),
+        Text(_explanation, style: Theme.of(context).textTheme.bodyMedium),
         const Spacer(),
         FilledButton(onPressed: _next, child: Text(_index == questions.length - 1 ? 'See results' : 'Next question')),
       ] else
@@ -115,6 +129,8 @@ class _QuizScreenState extends State<QuizScreen> {
         Text('Quiz complete!', style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         Text('You scored $_score out of ${questions.length}', style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: 8),
+        Text(_score == questions.length ? 'Perfect score — excellent work!' : _score >= 7 ? 'Strong result — review any missed answers and try again.' : 'Keep practicing — a second round will help reinforce these Flutter basics.'),
         const SizedBox(height: 28),
         FilledButton.icon(onPressed: _restart, icon: const Icon(Icons.replay), label: const Text('Restart quiz')),
       ]);
